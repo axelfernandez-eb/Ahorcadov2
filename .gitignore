@@ -5,3 +5,5 @@
 /venv/
 Ahorcadov2/__pycache__/
 .DS_Store
+.vscode/
+env/
