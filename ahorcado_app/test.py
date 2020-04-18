@@ -1,9 +1,9 @@
-import unittest
 from .ahorcado import Ahorcado, IsNotAlphaException, IsNotOneCharacter
 from unittest.mock import patch, MagicMock
+from django.test import TestCase
 
 
-class TestAhorcado(unittest.TestCase):
+class TestAhorcado(TestCase):
 
     def setUp(self):
         self.game = Ahorcado(force_word='PALABRA')
