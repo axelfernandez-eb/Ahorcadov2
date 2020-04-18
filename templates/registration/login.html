@@ -1,0 +1,12 @@
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+<body class="text-center ml-3" style="margin:2em auto;">
+	<h2 class="font-weight-bold text-center list-group-item">Login</h2>
+	<form style="margin:2em auto;" method="post">
+  	{% csrf_token %}
+  	{{ form.as_p }}
+  	<button type="submit" class="btn btn-outline-dark">Login</button>
+</form>
+
+</body>
