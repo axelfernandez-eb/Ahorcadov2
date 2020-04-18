@@ -128,7 +128,7 @@ class TestAhorcado(TestCase):
         self.assertEqual(self.game.board, "P A _ A _ _ A\nP A Z W\nLifes: 4")
 
     @patch(
-        'ahorcado.ahorcado.requests.get',
+        'ahorcado_app.ahorcado.requests.get',
     )
     def test_get_word_from_api_str(self, mock_get):
         response = MagicMock()
