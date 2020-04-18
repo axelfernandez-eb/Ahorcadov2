@@ -1,8 +1,64 @@
-<h1>Articles</h1>
-<ul>
-{% for article in object_list %}
-    <li>{{ article.pub_date|date }} - {{ article.headline }}</li>
-{% empty %}
-    <li>No articles yet.</li>
-{% endfor %}
-</ul>
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src='main.js'></script>
+</head>
+<body class="container-fluid justify-content-center bg-light" style="background-image: url('http://blog.hostbaby.com/wp-content/uploads/2014/03/Trees_1400x900.png')">
+
+    <div class= "d-flex justify-content-center mt-3">
+        <h1>Highscores</h1>
+    </div>
+
+    {% if not object_list %}
+
+    <div class="d-flex justify-content-center mt-2">
+        <h2>Todavia no hay Highscores!</h2>
+    </div>
+
+    <div class="d-flex justify-content-center mt-2">
+        <a href="#" class="btn btn-success">Juega y has el tuyo!</a>
+    </div>
+
+    {% else %}
+
+    <div class="d-flex justify-content-center mt-2">
+        <a href="#" class="btn btn-success">Juega y has el tuyo!</a>
+    </div>
+    
+    <table class="table table-striped table-borderless table-hover mt-5">
+        <thead>
+            <tr>
+                <th class="text-center">Name</th>
+                <th class="text-center">Lifes</th>
+                <th class="text-center">Word</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for score in object_list %}
+
+            <tr>
+                <td class="text-center">{{score.name}}</td>
+                <td class="text-center">{{score.lifes}}</td>
+                <td class="text-center">{{score.word}}</td>
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+    </table>
+    
+    {% endif %}
+
+    
+</body>
+</html>
