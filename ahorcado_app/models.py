@@ -1,7 +1,6 @@
 from django.db import models
 from django.conf import settings
-
-
+from rest_framework.views import APIView
 
 class Highscore(models.Model):
     name = models.ForeignKey(
@@ -11,4 +10,11 @@ class Highscore(models.Model):
     )
     lifes = models.IntegerField()
     word = models.CharField(max_length=20)
-# Create your models here.
+
+
+class Game(APIView):
+    def get(self, request, *args, **kwargs):
+        return 'implement this Too'
+
+    def post(self, request, *args, **kwargs):
+        return 'Implement this'

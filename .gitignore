@@ -7,3 +7,5 @@ Ahorcadov2/__pycache__/
 .DS_Store
 .vscode/
 env/
+db.sqlite3
+.coverage
