@@ -2,7 +2,6 @@ from django.db import models
 from django.conf import settings
 from rest_framework.views import APIView
 
-
 class Highscore(models.Model):
     name = models.ForeignKey(
         settings.AUTH_USER_MODEL,
