@@ -8,3 +8,5 @@ Ahorcadov2/__pycache__/
 .vscode/
 env/
 db.sqlite3
+.coverage
+
