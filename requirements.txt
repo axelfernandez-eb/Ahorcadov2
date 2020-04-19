@@ -11,3 +11,4 @@ urllib3==1.25.9
 djangorestframework==3.11.0
 django-bootstrap4==1.1.1
 django-bootstrap-form==3.4
+django_crispy_forms==1.9.0
