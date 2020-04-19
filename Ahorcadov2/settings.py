@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ahorcado_app',
     'bootstrap4',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -50,9 +51,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
 ROOT_URLCONF = 'Ahorcadov2.urls'
-
+LOGIN_REDIRECT_URL = 'game'
+LOGOUT_REDIRECT_URL = 'highscores'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -121,3 +122,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
