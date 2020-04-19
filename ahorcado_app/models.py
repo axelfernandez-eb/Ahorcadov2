@@ -16,13 +16,12 @@ class Highscore(models.Model):
 
 
 class Game(APIView):
-    word = Ahorcado().get_word_from_api()
-
-    def __init__(self, *args, **kwargs):
-        self.ahorcado = Ahorcado(self.word)
+    ahorcado = Ahorcado()
 
     def get(self, request, *args, **kwargs):
-        return Response({self.ahorcado.word+self.ahorcado.next_turn()})
+        return Response({self.ahorcado.word + self.ahorcado.next_turn()})
 
     def post(self, request, *args, **kwargs):
         return Response({self.ahorcado.play(**request.data)})
+
+
