@@ -50,9 +50,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
 ROOT_URLCONF = 'Ahorcadov2.urls'
-
+LOGIN_REDIRECT_URL = 'game'
+LOGOUT_REDIRECT_URL = 'highscores'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
