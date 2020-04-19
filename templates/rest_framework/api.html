@@ -1,15 +1,12 @@
 {% load bootstrap4 %}
 {% bootstrap_css %}
 {% bootstrap_javascript jquery='full' %}
-
 <body>
 	<div>
-   		<button class="apireq">JUGAR</button>
+   		<button class="apireq">START</button>
 	</div>
 	<div id="jsonresp" style="margin-top: 100px">
    		<p><span id="message"></span></p>
-   		<p><label> Lifes : </label><span id="lifes"></span></p>
-   		<p><label> Used letters : </label><span id="used_letters"></span></p>
    	</div>
 	<script type="text/javascript">
 		$('.apireq').click( function() {
@@ -18,14 +15,54 @@
          		dataType: "json",
 	            success : function (data) {
                     $('#message').text( data.message);
-                    $('#lifes').text( data.lifes);
-                    $('#used_letters').text( data.used_letters);
                 }
 	        });
         });
 	</script>
 
 	<div>
+		<form action="/" id="searchForm">
+		    <input type="text" name="letter" placeholder="Letter...">
+		    <input type="submit" value="Play">
+		</form>
+		<div id="result"></div>
+		<div id="board"></div>
+		<div class="row">Lifes :
+			<div id="lifes"></div>
+		</div>
+		<div id="used_letters"></div>
+		<script>
+			// Attach a submit handler to the form
+			$( "#searchForm" ).submit(function( event ) {
+
+			  // Stop form from submitting normally
+			  event.preventDefault();
+
+			  // Get some values from elements on the page:
+			  var $form = $( this ),
+			    term = $form.find( "input[name='letter']" ).val(),
+			    url = $form.attr( "action" );
+
+			  // Send the data using post
+			  var posting = $.post( "http://localhost:8000/game/",
+			  	{ letter: term }
+			  	);
+
+			  // Put the results in a div
+			  posting.done(function( data ) {
+			    var message = $('#message').text( data.message);
+			    var board = $('#board').text( data.board);
+			    var lifes = $('#lifes').text( data.lifes);
+			    var used_letters = $('#used_letters').text( data.used_letters);
+
+			    $( "#result" ).append( message );
+			    $( "#board" ).append( board );
+			    $( "#lifes" ).append( lifes );
+			    $( "#used_letters" ).append( used_letters );
+
+			  });
+			});
+		</script>
 
 	</div>
 </body>

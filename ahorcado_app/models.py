@@ -30,11 +30,9 @@ class Game(APIView):
 
     def post(self, request, *args, **kwargs):
         # The game may change in this point, save the new state in this variable
-        message = self.ahorcado.play(**request.data)
+        message = self.ahorcado.play(request.data["letter"][0])
         return Response({'message': message,
                          'lifes': self.ahorcado.lifes,
                          'used_letters': self.ahorcado.used_letters,
                          'is_playing': self.ahorcado.is_playing,
                          'board': self.ahorcado.board})
-
-
