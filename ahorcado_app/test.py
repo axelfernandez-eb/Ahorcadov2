@@ -109,23 +109,23 @@ class TestAhorcado(TestCase):
         self.assertTrue("Z" in self.game.used_letters)
 
     def test_board_min(self):
-        self.assertEqual(self.game.board, "_ _ _ _ _ _ _\n\nLifes: 6")
+        self.assertEqual(self.game.board, "_ _ _ _ _ _ _\nLifes: 6")
 
     def test_board_w_one_letter(self):
         self.game.play("P")
-        self.assertEqual(self.game.board, "P _ _ _ _ _ _\nP\nLifes: 6")
+        self.assertEqual(self.game.board, "P _ _ _ _ _ _\nLifes: 6")
 
     def test_board_w_two_letters(self):
         self.game.play("P")
         self.game.play("A")
-        self.assertEqual(self.game.board, "P A _ A _ _ A\nP A\nLifes: 6")
+        self.assertEqual(self.game.board, "P A _ A _ _ A\nLifes: 6")
 
     def test_board_w_three_letters_one_wrong(self):
         self.game.play("P")
         self.game.play("A")
         self.game.play("Z")
         self.game.play("W")
-        self.assertEqual(self.game.board, "P A _ A _ _ A\nP A Z W\nLifes: 4")
+        self.assertEqual(self.game.board, "P A _ A _ _ A\nLifes: 4")
 
     @patch(
         'ahorcado_app.ahorcado.requests.get',
