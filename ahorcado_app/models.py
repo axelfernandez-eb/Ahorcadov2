@@ -1,6 +1,9 @@
 from django.db import models
 from django.conf import settings
 from rest_framework.views import APIView
+from rest_framework.response import Response
+from .ahorcado import Ahorcado
+
 
 class Highscore(models.Model):
     name = models.ForeignKey(
@@ -13,8 +16,13 @@ class Highscore(models.Model):
 
 
 class Game(APIView):
+    word = Ahorcado().get_word_from_api()
+
+    def __init__(self, *args, **kwargs):
+        self.ahorcado = Ahorcado(self.word)
+
     def get(self, request, *args, **kwargs):
-        return 'implement this Too'
+        return Response({self.ahorcado.word+self.ahorcado.next_turn()})
 
     def post(self, request, *args, **kwargs):
-        return 'Implement this'
+        return Response({self.ahorcado.play(**request.data)})
