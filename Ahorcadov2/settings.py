@@ -25,7 +25,7 @@ SECRET_KEY = '8rhet)m5d@pli7#mo@iod03&ei+k64^srk5-_^!t7hn+mvzh%9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ahorcado-django.herokuapp.com']
 
 
 # Application definition
