@@ -7,6 +7,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 import os
+import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -27,6 +28,8 @@ SECRET_KEY = '8rhet)m5d@pli7#mo@iod03&ei+k64^srk5-_^!t7hn+mvzh%9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+ALLOWED_HOSTS = ['ahorcado-django.herokuapp.com']
 
 
 # Application definition
@@ -77,6 +80,21 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Ahorcadov2.wsgi.application'
+
+# Database
+# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'todo_list',
+        'USER': 'name',
+        'PASSWORD': '',
+        'PORT': '',
+    }
+}
+
+DB_FROM_ENV = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(DB_FROM_ENV)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
