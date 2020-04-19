@@ -7,6 +7,6 @@ install:
   - pip3 install -r requirements.txt
 # command to run tests
 script:
-  - coverage run --source='.' ./manage.py test
+  - coverage run --source='.' ./manage.py test --settings=Ahorcadov2.settings.local
 after_success:
   - coveralls
