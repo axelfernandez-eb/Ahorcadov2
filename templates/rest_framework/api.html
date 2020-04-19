@@ -1,18 +1,31 @@
 {% load bootstrap4 %}
 {% bootstrap_css %}
 {% bootstrap_javascript jquery='full' %}
+
 <body>
 	<div>
-		<form action="" method="get">
-        	{% csrf_token %}
-        	{{ response.data }}
-		</form>
+   		<button class="apireq">JUGAR</button>
 	</div>
+	<div id="jsonresp" style="margin-top: 100px">
+   		<p><span id="message"></span></p>
+   		<p><label> Lifes : </label><span id="lifes"></span></p>
+   		<p><label> Used letters : </label><span id="used_letters"></span></p>
+   	</div>
+	<script type="text/javascript">
+		$('.apireq').click( function() {
+			$.ajax({
+         		url : "http://localhost:8000/game",
+         		dataType: "json",
+	            success : function (data) {
+                    $('#message').text( data.message);
+                    $('#lifes').text( data.lifes);
+                    $('#used_letters').text( data.used_letters);
+                }
+	        });
+        });
+	</script>
+
 	<div>
-		<form action="" method="post">
-			{% csrf_token %}
-        	Letra: <input type="text" name="firstname"><br>
-			<input type="submit" value="Submit">
-		</form>
+
 	</div>
 </body>
