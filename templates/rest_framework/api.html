@@ -11,7 +11,7 @@
 	<script type="text/javascript">
 		$('.apireq').click( function() {
 			$.ajax({
-         		url : "http://localhost:8000/game",
+         		url : "https://ahorcado-django.herokuapp.com/game",
          		dataType: "json",
 	            success : function (data) {
                     $('#message').text( data.message);
@@ -44,7 +44,7 @@
 			    url = $form.attr( "action" );
 
 			  // Send the data using post
-			  var posting = $.post( "http://localhost:8000/game/",
+			  var posting = $.post( "https://ahorcado-django.herokuapp.com/game/",
 			  	{ letter: term }
 			  	);
 
