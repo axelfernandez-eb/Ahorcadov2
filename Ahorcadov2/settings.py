@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'ahorcado_app',
     'bootstrap4',
     'crispy_forms',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 MIDDLEWARE = [
