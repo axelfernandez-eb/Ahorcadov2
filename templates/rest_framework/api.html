@@ -21,7 +21,7 @@
 	</script>
 
 	<div>
-		<form action="/" id="searchForm">
+		<form action="/" id="searchForm">{% csrf_token %}
 		    <input type="text" name="letter" placeholder="Letter...">
 		    <input type="submit" value="Play">
 		</form>
