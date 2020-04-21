@@ -78,7 +78,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Ahorcadov2.urls'
-LOGIN_REDIRECT_URL = 'game'
+LOGIN_REDIRECT_URL = 'api'
 LOGOUT_REDIRECT_URL = 'highscores'
 TEMPLATES = [
     {
