@@ -18,3 +18,8 @@ def register(request):
     else:
         form = UserCreationForm()
     return render(request, 'ahorcado_app/create_user.html', {'form': form})
+
+
+def game_view(request):
+
+    return render(request, "rest_framework/api.html")
