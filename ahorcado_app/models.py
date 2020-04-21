@@ -1,5 +1,8 @@
 from django.db import models
 from django.conf import settings
+from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+from django.views.generic import ListView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .ahorcado import Ahorcado
@@ -14,8 +17,7 @@ class Highscore(models.Model):
     lifes = models.IntegerField()
     word = models.CharField(max_length=20)
 
-
-class Game(APIView):
+class Api(APIView):
     ahorcado = Ahorcado()
 
     def get(self, request, *args, **kwargs):
@@ -26,6 +28,7 @@ class Game(APIView):
                          'message': self.ahorcado.next_turn(),
                          'lifes': self.ahorcado.lifes,
                          'used_letters': self.ahorcado.used_letters,
+                         'board': self.ahorcado.board,
                          'is_playing': self.ahorcado.is_playing})
 
     def post(self, request, *args, **kwargs):

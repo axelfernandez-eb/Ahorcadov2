@@ -1,68 +1,71 @@
 {% load bootstrap4 %}
 {% bootstrap_css %}
 {% bootstrap_javascript jquery='full' %}
-<body>
-	<div>
-   		<button class="apireq">START</button>
-	</div>
-	<div id="jsonresp" style="margin-top: 100px">
-   		<p><span id="message"></span></p>
-   	</div>
-	<script type="text/javascript">
-		$('.apireq').click( function() {
-			$.ajax({
-         		url : "https://ahorcado-django.herokuapp.com/game",
-         		dataType: "json",
-	            success : function (data) {
-                    $('#message').text( data.message);
-                }
-	        });
-        });
-	</script>
-
-	<div>
-		<form action="/" id="searchForm">{% csrf_token %}
-		    <input type="text" name="letter" placeholder="Letter...">
-		    <input type="submit" value="Play">
-		</form>
-		<div id="result"></div>
-		<div id="board"></div>
-		<div class="row">Lifes :
-			<div id="lifes"></div>
-		</div>
-		<div id="used_letters"></div>
-		<script>
-			// Attach a submit handler to the form
-			$( "#searchForm" ).submit(function( event ) {
-
-			  // Stop form from submitting normally
-			  event.preventDefault();
-
-			  // Get some values from elements on the page:
-			  var $form = $( this ),
-			    term = $form.find( "input[name='letter']" ).val(),
-			    url = $form.attr( "action" );
-
-			  // Send the data using post
-			  var posting = $.post( "https://ahorcado-django.herokuapp.com/game/",
-			  	{ letter: term }
-			  	);
-
-			  // Put the results in a div
-			  posting.done(function( data ) {
-			    var message = $('#message').text( data.message);
+{% csrf_token %}
+<script type="text/javascript">
+    function startGame(){
+        $.ajax({
+            url : "http://localhost:8000/api/",
+            dataType: "json",
+            success : function (data) {
+                document.getElementById("message").innerHTML = (data.message);
+                var message = $('#message').text( data.message);
 			    var board = $('#board').text( data.board);
 			    var lifes = $('#lifes').text( data.lifes);
 			    var used_letters = $('#used_letters').text( data.used_letters);
 
-			    $( "#result" ).append( message );
+			    $( "#result" ).replaceWith( message );
+			    $( "#board" ).append( board );
+			    $( "#lifes" ).append( lifes );
+			    $( "#used_letters" ).append( used_letters );
+            }
+        });
+    }
+
+    function sendLetter() {
+        var json = {letter: $("#letter").val().toString()}
+        var $crf_token = $('[name="csrfmiddlewaretoken"]').attr('value');
+
+        $.ajax({
+            url: 'http://localhost:8000/api/',
+            type: 'post',
+            data: JSON.stringify(json),
+            headers: {
+                "X-CSRFToken": $crf_token,
+                "Content-Type": 'application/json'
+            },
+            dataType: 'json',
+            success: function (data) {
+                var message = $('#message').text( data.message);
+			    var board = $('#board').text( data.board);
+			    var lifes = $('#lifes').text( data.lifes);
+			    var used_letters = $('#used_letters').text( data.used_letters);
+
+			    $( "#result" ).replaceWith( message );
 			    $( "#board" ).append( board );
 			    $( "#lifes" ).append( lifes );
 			    $( "#used_letters" ).append( used_letters );
 
-			  });
-			});
-		</script>
+			    $("#letter").val('')
+            }
+        });
+    }
+</script>
 
-	</div>
+<body onload="startGame()">
+    <div id="jsonresp" style="margin-top: 100px">
+        <p><span id="message"></span></p>
+    </div>
+
+    <input id="letter" type="text" name="letter" placeholder="Letter...">
+    <button id="play" value="Play" onclick="sendLetter()">Play</button>
+
+    <div  style="margin-left: 30px">
+        <div id="result"></div>
+        <div id="board"></div>
+        <div class="row">Lifes :
+            <div id="lifes"></div>
+        </div>
+        <div id="used_letters"></div>
+    </div>
 </body>

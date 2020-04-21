@@ -1,11 +1,11 @@
 from django.urls import include, path
-from .models import Game
-from .views import HighscoreView, register
-
+from .models import Api
+from .views import HighscoreView, register, game_view
 
 urlpatterns = [
     path('', include('django.contrib.auth.urls'), name="login"),
     path('highscore/', HighscoreView.as_view(), name='highscores'),
-    path('game/', Game.as_view(), name='game'),
+    path('game/', game_view),
+    path('api/', Api.as_view(), name='api'),
     path('register/',register, name='register'),
 ]
