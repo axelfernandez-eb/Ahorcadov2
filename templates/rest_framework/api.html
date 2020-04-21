@@ -5,7 +5,7 @@
 <script type="text/javascript">
     function startGame(){
         $.ajax({
-            url : "http://localhost:8000/api/",
+            url : "http://"+$(location).attr('hostname') +"/api/",
             dataType: "json",
             success : function (data) {
                 document.getElementById("message").innerHTML = (data.message);
@@ -27,7 +27,7 @@
         var $crf_token = $('[name="csrfmiddlewaretoken"]').attr('value');
 
         $.ajax({
-            url: 'http://localhost:8000/api/',
+            url : "http://"+$(location).attr('hostname') +"/api/",
             type: 'post',
             data: JSON.stringify(json),
             headers: {
